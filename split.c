@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void   split (char* string,char* delimeters, char*** tokens,int*tokensCount);
 int main()
@@ -10,12 +11,15 @@ int main()
     char** tok;
     int count;
     
+    tok=(char**)malloc(20*sizeof(char*));
+    
     printf("Enter string:\n");
     gets(str);
     split(str, delim, &tok, &count);
     for (i=0; i<count; i++)
         printf("%s\n", tok[i]);
     printf("numder of words: %d", count);
+    free(tok);
     return 0;
 }
 void   split (char* string,char* delimeters, char*** tokens,int*tokensCount)
