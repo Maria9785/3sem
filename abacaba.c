@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*
+ * 1) вокруг бинарных операторов ставьте пробелы: "i + j", а не "i+j".
+ * 2) после , и ; ставьет пробел: 
+ * for (i = 1; i < n; i++)
+ * (int n, char* string)
+ */
+
 void GenerateString (int n,char* string)
 {
     int i;
