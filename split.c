@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-
 #define MAX_STRING_SIZE 80
 #define MAX_NUMBER_TOK 20
 
@@ -12,6 +11,13 @@ int main()
 {
     char str[MAX_STRING_SIZE];
     char delim[] = {' ', '\t', '.', '\0'};
+
+void split (char* string,char* delimeters, char*** tokens,int*tokensCount);
+
+int main()
+{
+    char str[80];
+    char delim[]={' ', '\t', '.', '\0'};
     int i;
     char** tok;
     int count;

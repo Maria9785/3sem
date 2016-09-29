@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 void GenerateString (int n,char* string)
 {
     int i;
