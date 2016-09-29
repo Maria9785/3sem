@@ -2,11 +2,18 @@
 #include <string.h>
 #include <stdlib.h>
 
-void   split (char* string,char* delimeters, char*** tokens,int*tokensCount);
+/*
+ * 1) Все магические числа вроде 20, 80 нужно заменить на константы
+ * #define MAX_STRING_SIZE 80 и т.д.
+ * 2) пробелы вокруг бинарных операторов (см. комментарий к abacaba)
+ */
+
+void split (char* string,char* delimeters, char*** tokens,int*tokensCount);
+
 int main()
 {
     char str[80];
-    char delim[]={' ', '\t', '.', '\0' };
+    char delim[]={' ', '\t', '.', '\0'};
     int i;
     char** tok;
     int count;
@@ -22,7 +29,8 @@ int main()
     free(tok);
     return 0;
 }
-void   split (char* string,char* delimeters, char*** tokens,int*tokensCount)
+
+void split (char* string,char* delimeters, char*** tokens,int*tokensCount)
 {
     *tokensCount = 0;
     char *pch = strtok(string, delimeters);
