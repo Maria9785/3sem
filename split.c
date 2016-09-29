@@ -10,13 +10,6 @@ void split (char* string, char* delimeters, char*** tokens, int* tokensCount);
 int main()
 {
     char str[MAX_STRING_SIZE];
-    char delim[] = {' ', '\t', '.', '\0'};
-
-void split (char* string,char* delimeters, char*** tokens,int*tokensCount);
-
-int main()
-{
-    char str[80];
     char delim[]={' ', '\t', '.', '\0'};
     int i;
     char** tok;
@@ -34,7 +27,7 @@ int main()
     return 0;
 }
 
-void split (char* string,char* delimeters, char*** tokens,int*tokensCount)
+void split (char* string, char* delimeters, char*** tokens, int* tokensCount)
 {
     *tokensCount = 0;
     char *pch = strtok(string, delimeters);
