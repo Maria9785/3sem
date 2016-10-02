@@ -1,5 +1,3 @@
-
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -11,6 +9,10 @@
 
 void split (char* string, char* delimeters, char*** tokens, int* tokensCount);
 
+/*
+ * обычно стараются писать программы универсальными.
+ * если получать имя файла с командами из аргументов командной строки, то программу можно будет использовать без перекомпиляции
+ */
 int main(int argc, const char * argv[]) {
     FILE* file = fopen ("file.txt", "r");
     int num_of_strings;
@@ -20,15 +22,14 @@ int main(int argc, const char * argv[]) {
     char*** tok;
     int* count;
     pid_t pid;
-    
-    
+
     fscanf(file, "%d", &num_of_strings);
-    
+
     tok = (char***)malloc(num_of_strings * sizeof(char**));
-    for (i = 0; i< num_of_strings; i++)
+    for (i = 0; i < num_of_strings; i++)
         tok[i] = (char**)malloc(MAX_NUMBER_OF_TOKENS * sizeof(char*));
     count = (int*)malloc(num_of_strings * sizeof(int));
-    
+
     fgets(string, MAX_NUMBER_OF_SYMBOLS, file);
     for (i = 0; i < num_of_strings; i++)
     {
@@ -36,16 +37,16 @@ int main(int argc, const char * argv[]) {
         split(string, delim, &(tok[i]), &(count[i]));
         tok[i][count[i]] = NULL;
     }
-    
+
     fclose(file);
-    
+
     for (i = 0; i < num_of_strings; i++)
     {
         pid = fork();
         if (pid == 0)
         {
             sleep(atoi(tok[i][0]));
-            execvp(tok[i][1], tok[i]+1);
+            execvp(tok[i][1], tok[i] + 1);
             exit(0);
         }
     }
@@ -53,7 +54,7 @@ int main(int argc, const char * argv[]) {
     for (i = 0; i < num_of_strings; i++)
         for (j = 0; j < count[i]; j++)
             free(tok[i][j]);
-    for (i=0; i<num_of_strings; i++)
+    for (i = 0; i < num_of_strings; i++)
         free(tok[i]);
     free(tok);
     free(count);
@@ -68,7 +69,7 @@ void split (char* string, char* delimeters, char*** tokens, int* tokensCount)
     while (pch != NULL)
     {
         (*tokens)[*tokensCount] = (char*) malloc(MAX_NUM_SYM_IN_WORD * sizeof(char));
-        memcpy((*tokens)[*tokensCount], pch, strlen(pch)+1);
+        memcpy((*tokens)[*tokensCount], pch, strlen(pch) + 1);
         (*tokensCount)++;
         pch =strtok(NULL, delimeters);
     }

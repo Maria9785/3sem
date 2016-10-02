@@ -27,9 +27,12 @@ int main(int argc, const char * argv[]) {
             break;
         };
     }
+    /*
+     * Можно было бы wait использовать.
+     */
     sleep(N - i);
-    if (i!=N)
+    if (i != N)
         printf("Child with pid %d is dead\n", child);
-    
+
     return 0;
 }
