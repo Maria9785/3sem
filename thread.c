@@ -2,15 +2,18 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+
 #define Number_Of_Threads 2
 #define Numbers_Of_Elements 100000000
 
+/*
+ * У вас в коде неявно предполагается, что число элементов нацело делится на число нитей.
+ * Лучше избегать этого, просто отдав последней нити меньший интервал, чем остальным. 
+ */
 
 double segment_sum[Number_Of_Threads];
 double numbers[Numbers_Of_Elements];
 double segment_squared_sum[Numbers_Of_Elements];
-
-
 
 struct Segment {
     int begin;
@@ -26,11 +29,9 @@ void* my_thread(void* arg) {
     {
         segment_sum[segment.index] += numbers[i];
         segment_squared_sum[segment.index] += numbers[i] * numbers[i];
-        
     }
     return NULL;
 }
-
 
 int main()
 {
@@ -58,13 +59,14 @@ int main()
                                 &(segments[i]));
     
         if (result[i]) {
-        printf("Can`t create thread, returned value = %d\n" , result[i]);
-        exit(-1);
+            printf("Can`t create thread, returned value = %d\n" , result[i]);
+            exit(-1);
         }
     }
     
     for (i = 0; i < Number_Of_Threads; i++)
             pthread_join(thread_id[i] , (void **) NULL);
+    
     clock_t end = clock();
     int sum = 0;
     int squared_sum = 0;
