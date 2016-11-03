@@ -1,4 +1,3 @@
-
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
@@ -14,6 +13,7 @@ int main()
     int number1;
     int number2;
     int maxlen;
+    
     number1 = rand() % 20;
     number2 = rand() % 20;
     printf ("number1 = %d", number1);
