@@ -1,10 +1,4 @@
-//
-//  main.c
-//  ee
-//
-//  Created by Мария on 28.10.16.
-//  Copyright (c) 2016 Мария. All rights reserved.
-//
+
 
 #include <stdio.h>
 
