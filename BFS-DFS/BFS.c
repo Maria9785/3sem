@@ -71,6 +71,21 @@ void bfs(int num_vertex)
         visited[i] = 0;
     while (num_visited < num_vertex)
     {
+        /*
+         * вы так произвольный граф обходите?
+         * Можно было бы без внешнего while:
+         * 
+         * for (i = 0; i < num_vertex; i++)
+            if (!visited[i])
+            {
+              visited[i] = 1;
+              push(&vertex, i);
+              while (!is_empty(&vertex))
+              {
+                 ...
+              }
+            }
+         */
         for (i = 0; i < num_vertex; i++)
             if (!visited[i]) break;
         visited[i] = 1;
